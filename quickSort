@@ -1,0 +1,31 @@
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr; // Base case: arrays with 0 or 1 element are already sorted
+    }
+
+    // Randomly select a pivot index
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    const pivot = arr[randomIndex];
+
+    const left = [];  // Elements less than the pivot
+    const right = []; // Elements greater than the pivot
+
+    // Partition the array into left and right arrays
+    for (let i = 0; i < arr.length; i++) {
+        if (i !== randomIndex) { // Skip the pivot index
+            if (arr[i] < pivot) {
+                left.push(arr[i]);
+            } else {
+                right.push(arr[i]);
+            }
+        }
+    }
+
+    // Recursively sort the left and right arrays and concatenate the results
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+// Example usage
+const array = [64, 34, 25, 12, 22, 11, 90];
+const sortedArray = quickSort(array);
+console.log("Sorted array:", sortedArray);
